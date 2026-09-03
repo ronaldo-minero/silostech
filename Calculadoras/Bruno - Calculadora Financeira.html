@@ -16,14 +16,7 @@
     <button onclick="calcularVerificacao()">calcular</button>
     <div id="exibir_verificacao"></div>
 
-    <h3>2) Desperdício por silo lotado (transbordamento)</h3>
-    <input type="text" id="ipt_custo_transbordamento"> Custo médio por evento de transbordamento, em reais (R$). <br>
-    <input type="text" id="ipt_eventos_sem"> Eventos de transbordamento por ano SEM monitoramento. <br>
-    <input type="text" id="ipt_eventos_com"> Eventos de transbordamento por ano COM monitoramento. <br>
-    <button onclick="calcularTransbordamento()">calcular</button>
-    <div id="exibir_transbordamento"></div>
-
-    <h3>3) Monitoramento remoto = escala</h3>
+    <h3>2) Monitoramento remoto = escala</h3>
     <input type="text" id="ipt_num_silos"> Número de silos monitorados. <br>
     <input type="text" id="ipt_custo_deslocamento"> Custo de deslocamento por visita a um silo, em reais (R$). <br>
     <input type="text" id="ipt_visitas_evitadas"> Visitas evitadas por silo por mês. <br>
@@ -31,19 +24,19 @@
     <div id="exibir_escala"></div>
 
 
-    <h3>4) Economia mensal total (automático)</h3>
+    <h3>3) Economia mensal total (automático)</h3>
     <button onclick="calcularEconomiaTotal()">calcular</button>
     <div id="exibir_economia_total"></div>
 
 
 
-    <h3>5) Payback do projeto (automático)</h3>
+    <h3>4) Payback do projeto (automático)</h3>
     <input type="text" id="ipt_custo_projeto"> Custo total do projeto, em reais (R$). <br>
     <button onclick="calcularPayback()">calcular</button>
     <div id="exibir_payback"></div>
 
 
-    <h3>6) Projeção anual e ROI (automático)</h3>
+    <h3>5) Projeção anual e ROI (automático)</h3>
     <button onclick="calcularAnual()">calcular</button>
     <div id="exibir_anual"></div>
 
@@ -70,18 +63,6 @@
         exibir_verificacao.innerHTML = `Economia na verificação de estoque (mensal): R$ ${economiaVerificacao} <br>`;
     };
 
-    function calcularTransbordamento () {
-
-        let custoTransbordamento = Number(ipt_custo_transbordamento.value);
-        let eventosSem = Number(ipt_eventos_sem.value);
-        let eventosCom = Number(ipt_eventos_com.value);
-
-        let prejuizoSemAnual = eventosSem * custoTransbordamento;
-        let prejuizoComAnual = eventosCom * custoTransbordamento;
-        economiaTransbordamento = (prejuizoSemAnual - prejuizoComAnual) / 12;
-
-        exibir_transbordamento.innerHTML = `Economia por desperdício evitado (mensal): R$ ${economiaTransbordamento} <br>`;
-    };
 
     function calcularEscala () {
 
