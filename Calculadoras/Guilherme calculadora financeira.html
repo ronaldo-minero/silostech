@@ -1,0 +1,79 @@
+<!-- Ideia 1 — Calculadora de economia por redução de perdas
+
+O usuário informa:
+
+Quantidade de milho armazenado (Tonelada)
+Preço do milho por Tonelada
+Percentual de perda atual (%)
+Percentual de perda esperado com o sistema (%) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h1>Calculadora de economia por redução de perdas</h1>
+    <span>Inserir quantidade de milho armazenado</span>
+    <input type="text" id="ipt_milhoArmazenado" placeholder="Toneladas"><br><br>
+
+    <span>Preço do milho por tonelada</span>
+    <input type="text" id="ipt_preco"><br><br>  
+
+    <span>Percentual de perda atual</span>
+    <input type="text" id="ipt_perdaAtual"><br><br>
+
+    <span>Percentual de perda esperado com o sistema</span>
+    <input type="text" id="ipt_perdaEsperada"><br><br>
+
+    <button onclick="calcularPerda()">Calcular economia</button><br><br>
+
+    <div id="div_mensagem"></div>
+
+    <p>___________________________________________________________________________________________________________________________________</p><br>
+
+    <h1>Calculadora de Prejuízo mensal</h1>
+
+    <span>Inserir a quantidade de prejuízo mensal</span>
+    <input type="text" id="ipt_prejuizo"><br><br>
+
+    <span>Número de meses</span>
+    <input type="text" id="ipt_meses"><br><br>
+
+    <button onclick="calcularPreujizoMensal()">Calcular Prejuízo Mensal</button><br><br>
+
+    <div id="div_mensagem2"></div>
+
+</body>
+</html>
+<script>
+    function calcularPerda(){
+        let milhoArmazenado = Number(ipt_milhoArmazenado.value);
+        let precoMilho = Number(ipt_preco.value);
+        let perdaAtual = Number(ipt_perdaAtual.value);
+        let perdaEsperada = Number(ipt_perdaEsperada.value);
+
+        let valorTotal = milhoArmazenado * precoMilho;
+
+        let totalPerdidoAtual = valorTotal * perdaAtual / 100;
+
+        let totalPerdaEsperada = valorTotal * perdaEsperada / 100;
+
+        let economia = totalPerdidoAtual - totalPerdaEsperada;
+
+        div_mensagem.innerHTML = `Seu negócio perde atualmente R$${totalPerdidoAtual.toFixed(2)}, com o nosso projeto seu negócio perderia R$${totalPerdaEsperada}, totalizando uma economia de R$${economia}`
+
+    }
+
+    function calcularPreujizoMensal(){
+        let prejuizoMensal = Number(ipt_prejuizo.value);
+        let meses = Number(ipt_meses.value);
+
+        let prejuizoTotal = prejuizoMensal * meses;
+        
+        div_mensagem2.innerHTML = `Seu prejuízo em ${meses} meses é de R$${prejuizoTotal.toFixed(2)}`
+    }
+</script>
+
