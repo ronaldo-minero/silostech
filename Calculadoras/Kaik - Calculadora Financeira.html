@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculadora do Silo</title>
+  </head>
+
+  <body>
+    <h2>CALCULADORA FINANCEIRA DO SILO</h2>
+    <p>Informe os dados do silo:</p>
+    Altura do silo (m):
+    <input type="number" id="altura"/>
+    <br /><br/>
+    Diâmetro do silo (m):
+    <input type="number" id="diametro"/>
+    <br /><br/>
+    Distância medida pelo sensor (m):
+    <input type="number" id="distancia"/>
+    <br /><br/>
+    Densidade do milho (kg/m³):
+    <input type="number" id="densidade" value="750"/>
+    <br /><br/>
+    Preço do milho por kg (R$):
+    <input type="number" id="preco"/>
+    <br /><br/>
+    Percentual de perda (%):
+    <input type="number" id="perda"/>
+    <br /><br/>
+    <button onclick="calcular()">Calcular estoque</button>
+    <p id="resultado"></p>
+
+    <script>
+      function calcular() {
+        let alturaSilo = Number(altura.value);
+        let diametroSilo = Number(diametro.value);
+        let distanciaSensor = Number(distancia.value);
+        let densidadeMilho = Number(densidade.value);
+        let precoMilho = Number(preco.value);
+        let percentualPerda = Number(perda.value);
+        let alturaMilho = alturaSilo - distanciaSensor;
+        let raio = diametroSilo / 2;
+        let area = 3.14 * raio * raio;
+        let volume = area * alturaMilho;
+        let quantidade = volume * densidadeMilho;
+        let toneladas = quantidade / 1000;
+        let valorEstoque = quantidade * precoMilho;
+        let milhoPerdido = (quantidade * percentualPerda) / 100;
+        let prejuizo = milhoPerdido * precoMilho;
+
+        resultado.innerHTML =
+          "Altura do milho: " +
+          alturaMilho.toFixed(2) +
+          " m<br><br>" +
+          "Volume de milho: " +
+          volume.toFixed(2) +
+          " m³<br><br>" +
+          "Quantidade de milho: " +
+          quantidade.toFixed(2) +
+          " kg<br><br>" +
+          "Quantidade em toneladas: " +
+          toneladas.toFixed(2) +
+          " toneladas<br><br>" +
+          "Valor do estoque: R$ " +
+          valorEstoque.toFixed(2) +
+          "<br><br>" +
+          "Possível perda: " +
+          milhoPerdido.toFixed(2) +
+          " kg<br><br>" +
+          "Possível prejuízo: R$ " +
+          prejuizo.toFixed(2);
+
+        if (alturaMilho <= 0) {
+          resultado.innerHTML =
+            "ERRO: A distância do sensor não pode ser maior que a altura do silo.";
+        } else if (alturaMilho < alturaSilo * 0.2) {
+          resultado.innerHTML += "<br><br>⚠️ ESTOQUE BAIXO!";
+        } else if (alturaMilho > alturaSilo * 0.9) {
+          resultado.innerHTML +=
+            "<br><br>⚠️ SILO PRÓXIMO DA CAPACIDADE MÁXIMA!";
+        } else {
+          resultado.innerHTML += "<br><br>✅ ESTOQUE NORMAL!";
+        }
+      }
+    </script>
+  </body>
+</html>
