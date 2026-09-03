@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira - SiloTech</title>
+</head>
+<body>
+    <h1>Calculadora Financeira - SiloTech</h1>
+
+    <h3>1) Custo de verificar o estoque manualmente</h3>
+    <input type="text" id="ipt_custo_hora"> Custo da hora do funcionário, em reais (R$). <br>
+    <input type="text" id="ipt_horas_medicao"> Horas gastas por verificação manual. <br>
+    <input type="text" id="ipt_medicoes_mes"> Verificações manuais feitas por mês. <br>
+    <input type="text" id="ipt_custo_manutencao"> Custo mensal de manutenção do sistema, em reais (R$). <br>
+    <button onclick="calcularVerificacao()">calcular</button>
+    <div id="exibir_verificacao"></div>
+
+    <h3>2) Desperdício por silo lotado (transbordamento)</h3>
+    <input type="text" id="ipt_custo_transbordamento"> Custo médio por evento de transbordamento, em reais (R$). <br>
+    <input type="text" id="ipt_eventos_sem"> Eventos de transbordamento por ano SEM monitoramento. <br>
+    <input type="text" id="ipt_eventos_com"> Eventos de transbordamento por ano COM monitoramento. <br>
+    <button onclick="calcularTransbordamento()">calcular</button>
+    <div id="exibir_transbordamento"></div>
+
+    <h3>3) Monitoramento remoto = escala</h3>
+    <input type="text" id="ipt_num_silos"> Número de silos monitorados. <br>
+    <input type="text" id="ipt_custo_deslocamento"> Custo de deslocamento por visita a um silo, em reais (R$). <br>
+    <input type="text" id="ipt_visitas_evitadas"> Visitas evitadas por silo por mês. <br>
+    <button onclick="calcularEscala()">calcular</button>
+    <div id="exibir_escala"></div>
+
+
+    <h3>4) Economia mensal total (automático)</h3>
+    <button onclick="calcularEconomiaTotal()">calcular</button>
+    <div id="exibir_economia_total"></div>
+
+
+
+    <h3>5) Payback do projeto (automático)</h3>
+    <input type="text" id="ipt_custo_projeto"> Custo total do projeto, em reais (R$). <br>
+    <button onclick="calcularPayback()">calcular</button>
+    <div id="exibir_payback"></div>
+
+
+    <h3>6) Projeção anual e ROI (automático)</h3>
+    <button onclick="calcularAnual()">calcular</button>
+    <div id="exibir_anual"></div>
+
+</body>
+</html>
+
+<script>
+
+    let economiaVerificacao = 0;
+    let economiaTransbordamento = 0;
+    let economiaEscala = 0;
+    let economiaMensalTotal = 0;
+
+    function calcularVerificacao () {
+
+        let custoHora = Number(ipt_custo_hora.value);
+        let horasMedicao = Number(ipt_horas_medicao.value);
+        let medicoesMes = Number(ipt_medicoes_mes.value);
+        let custoManutencao = Number(ipt_custo_manutencao.value);
+
+        let custoManualMensal = custoHora * horasMedicao * medicoesMes;
+        economiaVerificacao = custoManualMensal - custoManutencao;
+
+        exibir_verificacao.innerHTML = `Economia na verificação de estoque (mensal): R$ ${economiaVerificacao} <br>`;
+    };
+
+    function calcularTransbordamento () {
+
+        let custoTransbordamento = Number(ipt_custo_transbordamento.value);
+        let eventosSem = Number(ipt_eventos_sem.value);
+        let eventosCom = Number(ipt_eventos_com.value);
+
+        let prejuizoSemAnual = eventosSem * custoTransbordamento;
+        let prejuizoComAnual = eventosCom * custoTransbordamento;
+        economiaTransbordamento = (prejuizoSemAnual - prejuizoComAnual) / 12;
+
+        exibir_transbordamento.innerHTML = `Economia por desperdício evitado (mensal): R$ ${economiaTransbordamento} <br>`;
+    };
+
+    function calcularEscala () {
+
+        let numSilos = Number(ipt_num_silos.value);
+        let custoDeslocamento = Number(ipt_custo_deslocamento.value);
+        let visitasEvitadas = Number(ipt_visitas_evitadas.value);
+
+        economiaEscala = numSilos * custoDeslocamento * visitasEvitadas;
+
+        exibir_escala.innerHTML = `Economia por monitoramento remoto (mensal): R$ ${economiaEscala} <br>`;
+    };
+
+    function calcularEconomiaTotal () {
+
+        economiaMensalTotal = economiaVerificacao + economiaTransbordamento + economiaEscala;
+
+        exibir_economia_total.innerHTML = `Economia mensal total: R$ ${economiaMensalTotal} <br>
+        (verificação: R$ ${economiaVerificacao} + transbordamento: R$ ${economiaTransbordamento} + escala: R$ ${economiaEscala})`;
+    };
+
+    function calcularPayback () {
+
+        let custoProjeto = Number(ipt_custo_projeto.value);
+        let payback = custoProjeto / economiaMensalTotal;
+
+        exibir_payback.innerHTML = `Payback do projeto: ${payback} meses (economia mensal usada: R$ ${economiaMensalTotal}) <br>`;
+    };
+
+    function calcularAnual () {
+
+        let custoProjeto = Number(ipt_custo_projeto.value);
+        let economiaAnual = economiaMensalTotal * 12;
+        let roiPercentual = ((economiaAnual - custoProjeto) / custoProjeto) * 100;
+
+        exibir_anual.innerHTML = `Economia projetada em 1 ano: R$ ${economiaAnual} <br>
+        ROI em 1 ano: ${roiPercentual}% <br>`;
+    };
+
+</script>
