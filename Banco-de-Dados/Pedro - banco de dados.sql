@@ -1,0 +1,26 @@
+CREATE DATABASE SilosTech;
+USE SilosTech;
+
+CREATE TABLE produtos (
+idProduto INT PRIMARY KEY AUTO_INCREMENT,
+produto VARCHAR(30) NOT NULL,
+CONSTRAINT chkProduto CHECK (produto IN ('milho', 'soja')),
+preçoUnidade DECIMAL(10,2) NOT NULL,
+dtValidade DATE NOT NULL
+);
+
+CREATE TABLE cliente (
+idCliente INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(100) NOT NULL,
+cpf CHAR(12), 
+email VARCHAR(120) NOT NULL UNIQUE,
+senha VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE sensor (
+idSensor INT PRIMARY KEY AUTO_INCREMENT,
+tipoSensor VARCHAR(50) NOT NULL,
+statuss VARCHAR(30),
+CONSTRAINT chkStatus CHECK (statuss IN ('ativo', 'inativo')),
+dtLeitura DATETIME NOT NULL
+)AUTO_INCREMENT = 1;

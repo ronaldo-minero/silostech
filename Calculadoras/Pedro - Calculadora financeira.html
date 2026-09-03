@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora SilosTech</title>
+</head>
+<body>
+    <h1>Calculadora SilosTech</H1>
+    <h2> valor de manutenção do arduido mensal</h2>
+    <span>Quantidade de silos com sensor</span>
+    <input placeholder="ex: 8" type="text" id="ipt_qtdSilosSensor"><br>
+    <span>Quantidade de sensores por silos</span>
+    <input placeholder="ex: 5" type="text" id="ipt_SensoresPorSilo"><br>
+    <span>Quantidade de meses</span>
+    <input placeholder="ex: 9" type="text" id="ipt_quantidadeMeses"><br>
+
+    <button onclick="calcular_manutencao()">Calcular custo de manutenção</button>
+    <div id="mensagem"></div>
+
+    <h2> Cálculo do volume do silo</h2> <br>
+    Tamanho da base1 <input type="text" id="ipt_base1"><br>
+    Tamano da base2  <input type="text" id="ipt_base2"><br>
+    Altura do silo  <input type="text" id="ipt_altura"><br>
+    <button onclick="calcularVolume()">Calcular volume</button>
+    <div id="mensagem2"></div>
+    
+</body>
+</html>
+<script>
+    let custo = 200
+
+        function calcular_manutencao() {
+            let qtdSilosSensor = Number(ipt_qtdSilosSensor.value)
+            let sensoresPorSilo = Number(ipt_SensoresPorSilo.value)
+            let quantidadeMeses = Number(ipt_quantidadeMeses.value)
+            let valor_manutencao = qtdSilosSensor * sensoresPorSilo * quantidadeMeses * custo
+
+            if(quantidadeMeses == 1) {
+            mensagem.innerHTML = `O valor de manutenção em ${quantidadeMeses} mês será de R$ ${valor_manutencao}`
+        }else if(quantidadeMeses > 1){
+                mensagem.innerHTML = `O valor de manutenção em ${quantidadeMeses} meses será de R$ ${valor_manutencao}`
+        }
+    }
+        function calcularVolume(){
+            let base1 = Number(ipt_base1.value)
+            let base2 = Number(ipt_base2.value)
+            let altura = Number(ipt_altura.value)
+
+            let volume = (base1 + base2) * altura / 2
+
+            mensagem2.innerHTML = `O volume do seu silo é ${volume}m³.`
+    }
+</script>
