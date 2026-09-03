@@ -72,7 +72,7 @@
 
         if (porcentagemVolumeOcupado < 75) {
         span_calculoVolume.innerHTML += `<span style="color: green;"> Silo com quantidade tranquila, abaixo de 75%. </span>`
-        } else if (porcentagemVolumeOcupado >= 75 && porcentagemVolumeOcupado < 98) {
+        } else if (porcentagemVolumeOcupado < 98) {
             span_calculoVolume.innerHTML += `<span style="color: yellow; background-color: black;"> Silo quase cheio. </span>`
         } else {
             span_calculoVolume.innerHTML += `<span style="color: red;"> Silo lotado. </span>`
