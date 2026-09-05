@@ -129,13 +129,14 @@
         (verificação: R$ ${economiaVerificacao} + escala: R$ ${economiaEscala})`;
     };
 
-    function calcularPayback () {
+   function calcularPayback() {
 
-        let custoProjeto = Number(ipt_custo_projeto.value);
-        let payback = custoProjeto / economiaMensalTotal;
+    let custoProjeto = Number(ipt_custo_projeto.value);
+    let paybackMeses = custoProjeto / economiaMensalTotal;
+    let paybackDias = paybackMeses * 30.44; // média de dias por mês
 
-        exibir_payback.innerHTML = `Payback do projeto: ${payback} meses (economia mensal usada: R$ ${economiaMensalTotal}) <br>`;
-    };
+    exibir_payback.innerHTML = `Payback do projeto: ${paybackDias.toFixed(1)} dias (economia mensal usada: R$ ${economiaMensalTotal}) <br>`;
+    }
 
     function calcularAnual () {
 
