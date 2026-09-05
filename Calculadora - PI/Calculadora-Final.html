@@ -6,10 +6,48 @@
     <title>Calculadora Financeira - SiloTech</title>
 </head>
 <body>
+     <h1>Calculadora Tamanho - SilosTech</h1>
+        <div id="ronaldo">
+        <h3>1) Calculadora Área Silo</h3>
+
+  <div>
+    
+    <input type="text" placeholder="Insira a altura total" id="ipt_alturaTotal"> Altura total do silo: <br>
+    <img src="../img/vista_lateral_altura_silo.png" alt="Vista lateral do silo mostrando a altura total fixa" style="width: 500px;">
+  </div>
+
+  <div>
+
+    <input type="text" placeholder="Insira a altura medida" id="ipt_medidaSilo"> Altura medida pelo sensor:<br>
+    <img src="../img/sensor_medindo_silo_topo.png" alt="Sensor fixado no topo do silo medindo a distância até o grão" style="width: 500px;">
+  </div>
+
+  <div>
+    <input type="text" placeholder="Insira o raio" id="ipt_raioCilindro"> Raio Cilindro do Silo:<br>
+    <img src="../img/vista_de_cima_raio_silo.png" alt="Vista de cima do silo mostrando o raio, do centro até a borda" style="width: 500px;">
+  </div>
+
+  <br>
+  <button onclick="calcularVolume()">Calcular volume</button>
+  <span id="span_calculoVolume"></span>
+
+</div>
+
+
+    <div id="div_otimizaçãoEspaço">
+        <h3>2) Calculo Otimização de Espaço</h3>
+        <button onclick="otimizaçãoEspaço()">Capacidade recuperada</button> <br>
+        <span id="span_capacidadeRecuperada"></span>
+    </div>
+
+    <br>
+    </div>
+
+
 
     <h1>Calculadora Financeira - SilosTech</h1>
 
-    <h3>1) Custo de verificar o estoque manualmente</h3>
+    <h3>3) Custo de verificar o estoque manualmente</h3>
     <input type="text" id="ipt_custo_hora"> Custo da hora do funcionário, em reais (R$). <br>
     <input type="text" id="ipt_horas_medicao"> Horas gastas por verificação manual. <br>
     <input type="text" id="ipt_medicoes_mes"> Verificações manuais feitas por mês. <br>
@@ -17,7 +55,7 @@
     <button onclick="calcularVerificacao()">calcular</button>
     <div id="exibir_verificacao"></div>
 
-    <h3>2) Economia por escala utilizando monitoramento remoto </h3>
+    <h3>4) Economia por escala utilizando monitoramento remoto </h3>
     <input type="text" id="ipt_num_silos"> Número de silos monitorados. <br>
     <input type="text" id="ipt_custo_deslocamento"> Custo de deslocamento por visita a um silo, em reais (R$). <br>
     <input type="text" id="ipt_visitas_evitadas"> Visitas evitadas por silo por mês. <br>
@@ -25,42 +63,24 @@
     <div id="exibir_escala"></div>
 
 
-    <h3>3) Economia mensal total (automático)</h3>
+    <h3>5) Economia mensal total (automático)</h3>
     <button onclick="calcularEconomiaTotal()">calcular</button>
     <div id="exibir_economia_total"></div>
 
 
 
-    <h3>4) Payback do projeto (automático)</h3>
+    <h3>6) Payback do projeto (automático)</h3>
     <input type="text" id="ipt_custo_projeto"> Custo total do projeto, em reais (R$). <br>
     <button onclick="calcularPayback()">calcular</button>
     <div id="exibir_payback"></div>
 
 
-    <h3>5) Projeção anual e ROI (automático)</h3>
+    <h3>7) Projeção anual e ROI (automático)</h3>
     <button onclick="calcularAnual()">calcular</button>
     <div id="exibir_anual"></div> <br>
 
-    <div id="ronaldo">
-          <div id="div_calculadoraSilo">
-        <h3>6) Calculadora Área Silo</h3>
-
-        
-        <input type="text" placeholder="Insira a altura total" id="ipt_alturaTotal"> <span>Altura total do silo:</span> <br>
-        
-        <input type="text" placeholder="Insira a altura medida" id="ipt_medidaSilo"> <span>Altura medida pelo sensor:</span> <br>
-       
-        <input type="text" placeholder="Insira o raio" id="ipt_raioCilindro"> <span>Raio Cilindro do Silo:</span> <br>
-        
-        <button onclick="calcularVolume()">Calcular volume</button>
-
-        <br>
-
-        <span id="span_calculoVolume"></span>
-    </div>
-
     <div id="div_volumeFinanceiro">
-        <h3>7) Calculo Prejuizo M³</h3>
+        <h3>8) Calculo Prejuizo M³</h3>
         
         <input type="text" placeholder="Insira o preço do grão" id="ipt_precom3"> <span>Preço do m³:</span><br>
         
@@ -69,18 +89,6 @@
 
         <span id="span_calculoPrejuizoM3"></span>
     </div>
-
-        </div>
-
-    <div id="div_otimizaçãoEspaço">
-        <h3>8) Calculo Otimização de Espaço</h3>
-        <button onclick="otimizaçãoEspaço()">Capacidade recuperada</button> <br>
-        <span id="span_capacidadeRecuperada"></span>
-    </div>
-
-    <br>
-    </div>
-
 
 
 </body>
