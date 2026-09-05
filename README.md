@@ -1,4 +1,4 @@
-# 🌾 SiloTech — Monitoramento Inteligente de Estoque em Silos de Soja e Milho
+# 🌾 SilosTech — Monitoramento Inteligente de Estoque em Silos de Soja e Milho
 
 > Do campo analógico ao campo conectado: transformando um sensor de baixo custo em uma ferramenta de gestão, prevenção de perdas e **salvamento de vidas**.
 
