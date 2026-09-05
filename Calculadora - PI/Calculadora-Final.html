@@ -1,158 +1,98 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Calculadora Financeira - SiloTech</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <h2>Vamos construir um projeto juntos?</h2>
 
     <p>
-        Agora vamos descobrir quanto custa implementar nosso sistema
-        de monitoramento nos silos.
+      Agora vamos descobrir quanto custa implementar nosso sistema de
+      monitoramento nos silos.
     </p>
-
 
     <h3>1) Custo do nosso projeto</h3>
 
-    <input type="text" id="ipt_qtdSilos">
+    <input type="text" id="ipt_qtdSilos" />
     Quantidade de silos.
-    <br><br>
+    <br /><br />
 
-    <input type="text" id="ipt_alturaSensor">
+    <input type="text" id="ipt_alturaSensor" />
     Altura do silo, em metros.
-    <br><br>
+    <br /><br />
 
-    <button onclick="calcularCustoProjeto()">
-        Calcular projeto
-    </button>
+    <button onclick="calcularCustoProjeto()">Calcular projeto</button>
 
     <div id="exibir_custoProjeto"></div>
 
-
     <h3>2) Economia com o monitoramento remoto</h3>
 
-    <input type="text" id="ipt_custo_verificacao">
+    <input type="text" id="ipt_custo_verificacao" />
     Custo de uma verificação manual, em reais (R$).
-    <br><br>
+    <br /><br />
 
-    <input type="text" id="ipt_verificacoes_mes">
+    <input type="text" id="ipt_verificacoes_mes" />
     Quantidade de verificações por mês.
-    <br><br>
+    <br /><br />
 
-    <button onclick="calcularVerificacao()">
-        Calcular economia
-    </button>
+    <button onclick="calcularVerificacao()">Calcular economia</button>
 
     <div id="exibir_verificacao"></div>
 
-
     <h3>3) Projeção anual e ROI</h3>
 
-    <p>
-        A projeção é calculada com base na economia mensal líquida.
-    </p>
+    <p>A projeção é calculada com base na economia mensal líquida.</p>
 
-    <button onclick="calcularAnual()">
-        Calcular projeção
-    </button>
+    <button onclick="calcularAnual()">Calcular projeção</button>
 
     <div id="exibir_anual"></div>
-
-
-
-</body>
-
+  </body>
 </html>
 
 <script>
-// ==========================================
-// VARIÁVEIS GLOBAIS
-// ==========================================
+  let quantidadeSilos = 0;
+  let custoVerificacaoSilo = 0;
+  let verificacoesMes = 0;
 
-let quantidadeSilos = 0;
-let custoVerificacaoSilo = 0;
-let verificacoesMes = 0;
+  let economiaVerificacao = 0;
+  let economiaMensalTotal = 0;
 
-let economiaVerificacao = 0;
-let economiaMensalTotal = 0;
+  let volumeTotal = 0;
+  let volumeOcupado = 0;
+  let valorMetro3 = 0;
 
-let volumeTotal = 0;
-let volumeOcupado = 0;
-let valorMetro3 = 0;
+  let custoPorSensor = 350;
+  let taxaInstalacao = 100;
 
-let custoPorSensor = 350;
-let taxaInstalacao = 100;
+  let investimentoInicial = 0;
+  let custoMensalProjeto = 0;
 
-let investimentoInicial = 0;
-let custoMensalProjeto = 0;
+  function calcularCustoProjeto() {
+    quantidadeSilos = Number(ipt_qtdSilos.value);
 
+    let alturaSilo = Number(ipt_alturaSensor.value);
 
-// ==========================================
-// 1. CUSTO DO PROJETO
-// ==========================================
+    let resto = alturaSilo % 4;
 
-function calcularCustoProjeto() {
-
-    quantidadeSilos =
-        Number(ipt_qtdSilos.value);
-
-    let alturaSilo =
-        Number(ipt_alturaSensor.value);
-
-
-    // ==========================================
-    // QUANTIDADE DE SENSORES
-    // Cada sensor mede até 4 metros
-    // ==========================================
-
-    let resto =
-        alturaSilo % 4;
-
-    let sensoresPorSilo =
-        (alturaSilo - resto) / 4;
+    let sensoresPorSilo = (alturaSilo - resto) / 4;
 
     if (resto > 0) {
-        sensoresPorSilo =
-            sensoresPorSilo + 1;
+      sensoresPorSilo = sensoresPorSilo + 1;
     }
 
+    let sensoresTotais = sensoresPorSilo * quantidadeSilos;
 
-    let sensoresTotais =
-        sensoresPorSilo * quantidadeSilos;
+    let custoSensores = sensoresTotais * custoPorSensor;
 
+    let custoInstalacao = quantidadeSilos * taxaInstalacao;
 
-    // ==========================================
-    // CUSTOS
-    // ==========================================
+    custoMensalProjeto = 300 + quantidadeSilos * 100;
 
-    let custoSensores =
-        sensoresTotais * custoPorSensor;
-
-    let custoInstalacao =
-        quantidadeSilos * taxaInstalacao;
-
-
-    // R$ 300 fixos + R$ 100 por silo
-    custoMensalProjeto =
-        300 + (quantidadeSilos * 100);
-
-
-    // Investimento inicial
-    investimentoInicial =
-        custoSensores +
-        custoInstalacao;
-
-
-    // ==========================================
-    // EXIBIÇÃO
-    // ==========================================
+    investimentoInicial = custoSensores + custoInstalacao;
 
     exibir_custoProjeto.innerHTML = `
         Sensores necessários por silo:
@@ -173,45 +113,17 @@ function calcularCustoProjeto() {
         Custo mensal do projeto:
         R$ ${custoMensalProjeto.toFixed(2)}
     `;
-}
+  }
 
+  function calcularVerificacao() {
+    custoVerificacaoSilo = Number(ipt_custo_verificacao.value);
 
-// ==========================================
-// 2. ECONOMIA COM MONITORAMENTO REMOTO
-// ==========================================
-
-function calcularVerificacao() {
-
-    custoVerificacaoSilo =
-        Number(ipt_custo_verificacao.value);
-
-    verificacoesMes =
-        Number(ipt_verificacoes_mes.value);
-
-
-    // ==========================================
-    // CUSTO DA VERIFICAÇÃO MANUAL
-    // ==========================================
+    verificacoesMes = Number(ipt_verificacoes_mes.value);
 
     economiaVerificacao =
-        quantidadeSilos *
-        custoVerificacaoSilo *
-        verificacoesMes;
+      quantidadeSilos * custoVerificacaoSilo * verificacoesMes;
 
-
-    // ==========================================
-    // ECONOMIA MENSAL LÍQUIDA
-    // Desconta o custo mensal do projeto
-    // ==========================================
-
-    economiaMensalTotal =
-        economiaVerificacao -
-        custoMensalProjeto;
-
-
-    // ==========================================
-    // EXIBIÇÃO
-    // ==========================================
+    economiaMensalTotal = economiaVerificacao - custoMensalProjeto;
 
     exibir_verificacao.innerHTML = `
         Quantidade de silos:
@@ -234,35 +146,17 @@ function calcularVerificacao() {
             R$ ${economiaMensalTotal.toFixed(2)}
         </strong>
     `;
-}
+  }
 
+  function calcularAnual() {
+    let custoAnualProjeto = custoMensalProjeto * 12;
 
-// ==========================================
-// 3. PROJEÇÃO ANUAL E ROI
-// ==========================================
+    let investimentoAnual = investimentoInicial + custoAnualProjeto;
 
-function calcularAnual() {
-
-    // Custo anual do suporte 24/7 (o valor mensal já é fixo + por silo)
-    let custoAnualProjeto =
-        custoMensalProjeto * 12;
-
-    // Investimento total do ano: instalação (sensores + taxa)
-    // + suporte 24/7 anualizado
-    let investimentoAnual =
-        investimentoInicial +
-        custoAnualProjeto;
-
-    // Economia BRUTA anual (sem descontar o suporte aqui, porque
-    // o suporte já entrou do lado do investimento — se descontasse
-    // dos dois lados, contaria o mesmo custo duas vezes)
-    let economiaAnualBruta =
-        economiaVerificacao * 12;
+    let economiaAnualBruta = economiaVerificacao * 12;
 
     let roiPercentual =
-        ((economiaAnualBruta - investimentoAnual)
-        / investimentoAnual) * 100;
-
+      ((economiaAnualBruta - investimentoAnual) / investimentoAnual) * 100;
 
     exibir_anual.innerHTML = `
         Custo anual do suporte 24/7:
@@ -280,7 +174,5 @@ function calcularAnual() {
             ${roiPercentual.toFixed(2)}%
         </strong>
     `;
-}
-
-
+  }
 </script>
