@@ -91,15 +91,26 @@
 
 
 
-        <h3>6) Payback do projeto (automático)</h3>
-        <br>
-        <button onclick="calcularPayback()">calcular</button>
-        <div id="exibir_payback"></div>
+    <h3>6) Simulação de Economia Anual</h2>
 
+    <span>Capacidade Armazenada (toneladas)</span><br>
+    <input placeholder="ex: 1200" type="text" id="ipt_capacidade"><br>
 
-        <h3>7) Projeção anual (automático)</h3>
-        <button onclick="calcularAnual()">calcular</button>
-        <div id="exibir_anual"></div> <br>
+    <span>Taxa de Perda Média Comum (% ao ano)</span><br>
+    <input placeholder="ex: 3.5" type="text" id="ipt_taxaComum"><br>
+
+    <span>Taxa de Perda com Tecnologia SiloTech (% ao ano)</span><br>
+    <input placeholder="ex: 0.5" type="text" id="ipt_taxaSiloTech"><br>
+
+    <span>Preço médio por tonelada (R$)</span><br>
+    <input placeholder="ex: 1350" type="text" id="ipt_preco"><br>
+
+    <span>Investimento estimado na Tecnologia SiloTech (R$)</span><br>
+    <input placeholder="ex: 12150" type="text" id="ipt_investimento"><br>
+
+    <button onclick="calcularEconomia()">Calcular economia</button>
+    <div id="mensagem"></div>
+
 
 
     </body>
@@ -266,6 +277,26 @@
         R$ ${investimentoInicial.toFixed(2)}
 `;
   }
+          function calcularEconomia() {
+            let capacidade = Number(ipt_capacidade.value)
+            let taxaComum = Number(ipt_taxaComum.value)
+            let taxaSilosTech = Number(ipt_taxaSiloTech.value)
+            let preco = Number(ipt_preco.value)
+            let investimento = Number(ipt_investimento.value)
+
+            let toneladasEconomizadas = capacidade * (taxaComum - taxaSilosTech) / 100
+            let economiaAnual = toneladasEconomizadas * preco
+            let economiaMensal = economiaAnual / 12
+            let roiMeses
+
+            if (economiaMensal > 0) {
+                roiMeses = investimento / economiaMensal
+            } else {
+                roiMeses = 0
+            }
+
+            mensagem.innerHTML = `A economia anual estimada é de R$ ${economiaAnual.toFixed(2)}, com ROI em ${roiMeses.toFixed(1)} meses.`
+        }
 
 
 
