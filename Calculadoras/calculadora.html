@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Cálculos relacionados à mercadoria</h2>
+    Insira quantos silos você tem<br />
+    <input type="text" id="ipt_silos" placeholder="Ex:10"/><br>
+    <h3>Grãos de Soja</h3>
+    Insira a quantidade de mercadoria de soja em Kg<br />
+    <input type="text" id="ipt_qtdSoja" placeholder="Ex:30"/><br>
+    <p></p>
+    Insira o valor de cada quilo de soja<br>
+    <input type="text" id="ipt_vlrSoja" placeholder="(Opcional)">
+    <p></p>
+    <button onclick="calcularS()">
+      Calcule o quanto é perdido de soja por silo</button
+    ><br />
+    <div id="div_exibirS"></div>
+    <p></p>
+    <h3>Grãos de Milho</h3>
+    Insira a quantidade de mercadoria de grãos de milho em Kg<br />
+    <input type="text" id="ipt_qtdMilho" placeholder="Ex:30"/><br>
+    <p></p>
+    Insira o valor do grão de milho<br>
+    <input type="text" id="ipt_vlrMilho" placeholder="(Opcional)">
+    <p></p>
+    <button onclick="calcularM()">
+      Calcule o quanto é perdido de milho por silo
+    </button>
+    <div id="div_exibirM"></div>
+    <p><h2>Cálculos relacionados à funcionários</h2></p>
+    Insira quantos funcionários atuam na área de suprevisão dos silos<br>
+    <input type="text" id="ipt_qtdFuncionario" placeholder="Ex:10"><br><p></p>
+     Insira quanto esses funcionários recebem<br>
+    <input type="text" id="ipt_salario" placeholder="(Opcional)"><br>
+
+    <button onclick="calcular()">Calcular pagamento</button>
+    <div id="div_mostrar"></div>
+    
+    
+  </body>
+</html>
+<script>
+  function calcularS() {
+    let qtdSoja = Number(ipt_qtdSoja.value);
+    let silos = Number(ipt_silos.value);
+    let vlrSoja = Number(ipt_vlrSoja.value)
+    let mediaS = qtdSoja * 2.47;
+    let mediaTotalS = mediaS*silos
+    let ValorS = qtdSoja*vlrSoja
+    let percaS = ValorS * silos;
+    let porcentagemMediaS = mediaTotalS*15/100
+    let porcentagemS = percaS*15/100
+    porcentagemMediaS.toFixed(2)
+    porcentagemS.toFixed(2)
+
+    if (percaS<=0){
+        div_exibirS.innerHTML = `É perdido uma média de <b>R$${porcentagemMediaS} </b>de soja, que equivale a 15% da mercadoria.`;
+    }else
+    div_exibirS.innerHTML = `É perdido <b>R$${porcentagemS} </b>de soja no total, que equivale a 15% da mercadoria.`;
+    }
+  function calcularM() {
+    let vlrMilho = Number(ipt_vlrMilho.value);
+    let qtdMilho = Number(ipt_qtdMilho.value);
+    let silos = Number(ipt_silos.value);
+    let mediaM = qtdMilho * 1.12;
+    let mediaTotalM = mediaM*silos
+    let valorM = vlrMilho*qtdMilho
+    let percaM = valorM * silos;
+    let porcentagemMediaM = mediaTotalM*15/100
+    let porcentagemM = percaM*15/100
+    
+
+    if (vlrMilho<=0){
+    div_exibirM.innerHTML = `É perdido uma média de <b>R$${porcentagemMediaM}</b> de milho.`;
+    } else 
+    div_exibirM.innerHTML = `É perdido <b>R$${porcentagemM} </b>de milho no total.`
+  }
+  function calcular(){
+    let qtdFuncionario = Number(ipt_qtdFuncionario.value)
+    let salario = Number(ipt_salario.value)
+    let mediaSalario = qtdFuncionario*2460
+    let totalSalario = qtdFuncionario*salario
+    mediaSalario.toFixed(2)
+    totalSalario.toFixed(2)
+
+    if (totalSalario <=0 ){
+    div_mostrar.innerHTML = `Todos os funcionários no total recebem em média R$${mediaSalario}<br>`
+    }else
+    div_mostrar.innerHTML = `Todos os funcionários recebem especificamente R$${totalSalario}<br>`
+
+  }
+</script>
