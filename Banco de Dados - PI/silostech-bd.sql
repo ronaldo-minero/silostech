@@ -18,7 +18,7 @@ use db_silostech;
 CREATE TABLE sensor (
 
     idLeitura INT PRIMARY KEY AUTO_INCREMENT,
-    idSensor INT NOT NULL,
+    idSensor INT UNIQUE NOT NULL,
     dataHoraLeitura DATETIME DEFAULT CURRENT_TIMESTAMP, 
     valorLeitura DECIMAL(10,2),
     tipoSensor VARCHAR(20) NOT NULL,
@@ -80,6 +80,7 @@ ALTER TABLE empresa
     ADD COLUMN cidadeEmpresa VARCHAR(50),
     ADD COLUMN estadoEmpresa CHAR(2),
     ADD COLUMN complementoEmpresa VARCHAR(30);
+<<<<<<< HEAD
     
     use db_silostech;
     
@@ -88,6 +89,10 @@ ALTER TABLE empresa
     INSERT INTO sensor VALUES 
     (DEFAULT,2,DEFAULT,13.5,'Temperatura',DEFAULT),
     (DEFAULT,3,DEFAULT,16.2,'Temperatura',0);
+=======
+            
+    INSERT INTO sensor VALUES (DEFAULT,2,DEFAULT,13.5,'Temperatura',DEFAULT),(DEFAULT,3,DEFAULT,16.2,'Temperatura',0);
+>>>>>>> 1cc5118557bc7a681857bee5ed32332160e65a4e
     
     SELECT * FROM sensor;
     
@@ -97,6 +102,7 @@ ALTER TABLE empresa
 ('Marcos Oliveira', '34567890123', 'marcos.oliveira@email.com', '(31) 98888-7777', '$2y$10$X7vRtY2bN8mK9pL3qW1s2u4oMQPQOxhH5f5v4d5e6f7g8h9i0j1k'),
 ('Juliana Lima', '45678901234', 'juliana.lima@email.com', '(41) 97777-6666', '$2y$10$Z3xCvBnM1qAzWsEdRfTgYh6oMQPQOxhH5f5v4d5e6f7g8h9i0j1k'),
 ('Roberto Santos', '56789012345', 'roberto.santos@email.com', '(71) 96666-5555', '$2y$10$P5oLiKuYtReWqAzXsEdCfV8oMQPQOxhH5f5v4d5e6f7g8h9i0j1k');
+<<<<<<< HEAD
 
 select * from cliente;
 
@@ -126,8 +132,30 @@ select * from empresa;
 
 
 
+=======
+>>>>>>> 1cc5118557bc7a681857bee5ed32332160e65a4e
 
+SELECT * FROM cliente;
 
+INSERT INTO empresa (razaoSocial, nomeFantasia, cnpjEmpresa) VALUES
+('Silva e Santos Alimentos Ltda', 'Mercado Central', '12345678000101'),
+('Tech Prime Solucoes em Tecnologia S.A.', 'TechPrime', '23456789000102'),
+('Oliveira e Lima Construcoes Eireli', 'ConstruLima', '34567890000103'),
+('Juliana Modas e Acessorios Ltda', 'Espaco Fashion', '45678901000104'),
+('Logistica Rapida Transportes S.A.', 'RapidoLog', '56789012000105');
+
+SELECT * FROM empresa;
+
+INSERT INTO silo (nomeSilo, capacidadeMaximaVolume, tipoConteudo, dataInstalacao) VALUES
+('Silo Norte Grãos', 150000.00, 'Milho', '2024-03-15'),
+('Silo Sul Soja', 250000.50, 'Soja', '2023-08-22'),
+('Silo Central Trigo', 180000.00, 'Soja', '2025-01-10'),
+('Silo Armazém Café', 90000.75, 'Milho', '2022-11-05'),
+('Silo Reserva Cevada', 120000.00, 'Soja', '2024-06-18');
+
+SELECT * FROM silo;
+
+SHOW TABLES;
 
 
 

@@ -1,16 +1,3 @@
-/*
-PROJETO E INOVAÇÃO - 1 ADSA - GRUPO 03
-
-Bruno Santos da Silva (RA: 01262003)
-Guilherme de Sousa Pinheiro (RA: 01262126)
-Kaik Correia da Silva (RA: 01262125)
-Marcos Vinicius Miguel Ferreira (RA: 01262089)
-Pedro Henrique de Mendonça Bittencourt (RA: 01262102)
-Ronaldo Minéro Júnior (RA: 01262122)
-Willian Denis Santuches (RA: 01262084) 
-*/
-
-
 CREATE DATABASE db_silostech;
 
 use db_silostech;
