@@ -9,10 +9,12 @@
 
 <body>
     <div id="ronaldo">
-     <h1>1️⃣ Calculadora de Capacidade de Armazenamento - SilosTech 👩🏽‍💻🌽</h1>
+     <h1>Calculadora de Capacidade de Armazenamento - SilosTech </h1>
      <h4>Estime o volume de grãos armazenado a partir da altura medida pelo sensor</h4>
+     <p>Estamos utilizando PI no valor de 3,14 para o cálculo da área</p>
         
         <h3>Calculadora Área Silo</h3>
+
 
         <div>
 
@@ -70,8 +72,11 @@
 
 
 
-    <h1>2️⃣ Calculadora Financeira - SilosTech 💰</h1>
+    <h1> Calculadora Financeira - SilosTech </h1>
     <h4>Compare o custo da verificação manual com a economia do monitoramento remoto</h4>
+    <p>Custo por sensor: <b>R$ 350</b></p>
+    <p>Custo da instalação: <b>R$ 200</b></p>
+    <p>Custo da Taxa Mensal:<b> R$ 300 fixos + R$ 100 por silo</p>
 
     
         <h3>Custo do nosso projeto</h3>
@@ -91,7 +96,6 @@
 
 
     <h3>Economia por escala utilizando monitoramento remoto </h3>
-    <input type="text" id="ipt_num_silos" placeholder="total de silos"> Número de silos monitorados. <br>
     <input type="text" id="ipt_custo_deslocamento" placeholder="custo total"> Custo de deslocamento por visita a um silo, em reais (R$). <br>
     <input type="text" id="ipt_visitas_evitadas" placeholder="todos os silos"> Visitas evitadas por silo por mês. <br>
     <button onclick="calcularEscala()">calcular</button>
@@ -101,7 +105,7 @@
 
 
     <h3>Simulação de Economia Anual</h2>
-        <p>A economia anual toma como base o custo do projeto estimado na simulação anterior.</p>
+        <p>A economia anual toma como base o custo do projeto estimado na simulação anterior. Tomando como base o custo do projeto calculado antes </p>
 
     <span>Capacidade Armazenada (toneladas)</span><br>
     <input placeholder="ex: 1200" type="text" id="ipt_capacidade"><br>
@@ -139,7 +143,7 @@
 
 
     let custoPorSensor = 350;
-    let taxaInstalacao = 100;
+    let taxaInstalacao = 200;
 
     let investimentoInicial = 0;
     let custoMensalProjeto = 0;
@@ -160,11 +164,11 @@
 
     function calcularEscala() {
 
-        let numSilos = Number(ipt_num_silos.value);
+   
         let custoDeslocamento = Number(ipt_custo_deslocamento.value);
         let visitasEvitadas = Number(ipt_visitas_evitadas.value);
 
-        economiaEscala = numSilos * custoDeslocamento * visitasEvitadas;
+        economiaEscala = quantidadeSilos * custoDeslocamento * visitasEvitadas;
 
         exibir_escala.innerHTML = `Economia por monitoramento remoto (mensal): R$ ${economiaEscala} <br>`;
     };
@@ -220,9 +224,9 @@
     }
 
     function volumeFinanceiro() {
+
         valorMetro3 = Number(ipt_precom3.value);
         let porcentagemPrejuizo = Number(ipt_porcentagemPerdam3.value);
-
         let valorTotalEstocado = valorMetro3 * volumeOcupado;
         let calculoPrejuizo = valorTotalEstocado * (porcentagemPrejuizo / 100)
 
@@ -273,7 +277,7 @@
         R$ ${custoSensores.toFixed(2)} (R$350 por sensor)<br>
 
         Custo de instalação:
-        R$ ${custoInstalacao.toFixed(2)} (R$100 por silo) <br>
+        R$ ${custoInstalacao.toFixed(2)} (R$200 por silo) <br>
 
         
         Custo mensal do Suporte 24/7 :
