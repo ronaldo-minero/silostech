@@ -101,3 +101,5 @@ insert into sensor (idSensor, dataHoraLeitura, valorLeitura, tipoSensor, statusS
 (2, now(), 1.23, 'Ultrasônico', 1),
 (1, now(), 3.21, 'Ultrasônico', 1),
 (3, now(), 2.31, 'Ultrasônico', 0);
+
+-- DROP DATABASE db_silostech;

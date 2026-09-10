@@ -41,11 +41,7 @@
     </div>
 
 
-    <div id="div_otimizaçãoEspaço">
-        <h3> Calculo Otimização de Espaço</h3>
-        <button onclick="otimizaçãoEspaço()">Capacidade recuperada</button> <br>
-        <span id="span_capacidadeRecuperada"></span>
-    </div>
+
 
     <br>
     </div>
@@ -60,6 +56,14 @@
         <button onclick="volumeFinanceiro()">Calcular prejuizo</button> <br>
 
         <span id="span_calculoPrejuizoM3"></span>
+
+        
+    <div id="div_otimizaçãoEspaço">
+        <h3> Calculo Otimização de Espaço</h3>
+        <button onclick="otimizaçãoEspaço()">Capacidade recuperada</button> <br>
+        <span id="span_capacidadeRecuperada"></span>
+    </div>
+
     </div>
 
 
@@ -69,15 +73,7 @@
     <h1>2️⃣ Calculadora Financeira - SilosTech 💰</h1>
     <h4>Compare o custo da verificação manual com a economia do monitoramento remoto</h4>
 
-
-    <h3>Economia por escala utilizando monitoramento remoto </h3>
-    <input type="text" id="ipt_num_silos" placeholder="total de silos"> Número de silos monitorados. <br>
-    <input type="text" id="ipt_custo_deslocamento" placeholder="custo total"> Custo de deslocamento por visita a um silo, em reais (R$). <br>
-    <input type="text" id="ipt_visitas_evitadas" placeholder="todos os silos"> Visitas evitadas por silo por mês. <br>
-    <button onclick="calcularEscala()">calcular</button>
-    <div id="exibir_escala"></div>
-
-
+    
         <h3>Custo do nosso projeto</h3>
 
         <input type="text" id="ipt_qtdSilos" placeholder="ex: 20" />
@@ -94,7 +90,18 @@
 
 
 
+    <h3>Economia por escala utilizando monitoramento remoto </h3>
+    <input type="text" id="ipt_num_silos" placeholder="total de silos"> Número de silos monitorados. <br>
+    <input type="text" id="ipt_custo_deslocamento" placeholder="custo total"> Custo de deslocamento por visita a um silo, em reais (R$). <br>
+    <input type="text" id="ipt_visitas_evitadas" placeholder="todos os silos"> Visitas evitadas por silo por mês. <br>
+    <button onclick="calcularEscala()">calcular</button>
+    <div id="exibir_escala"></div>
+
+
+
+
     <h3>Simulação de Economia Anual</h2>
+        <p>A economia anual toma como base o custo do projeto estimado na simulação anterior.</p>
 
     <span>Capacidade Armazenada (toneladas)</span><br>
     <input placeholder="ex: 1200" type="text" id="ipt_capacidade"><br>
@@ -107,9 +114,6 @@
 
     <span>Preço médio por tonelada (R$)</span><br>
     <input placeholder="ex: 1350" type="text" id="ipt_preco"><br>
-
-    <span>Investimento estimado na Tecnologia SiloTech (R$)</span><br>
-    <input placeholder="ex: 12150" type="text" id="ipt_investimento"><br>
 
     <button onclick="calcularEconomia()">Calcular economia</button>
     <div id="mensagem"></div>
@@ -285,7 +289,8 @@
             let taxaComum = Number(ipt_taxaComum.value)
             let taxaSilosTech = Number(ipt_taxaSiloTech.value)
             let preco = Number(ipt_preco.value)
-            let investimento = Number(ipt_investimento.value)
+
+            investimentoInicial 
 
             let toneladasEconomizadas = capacidade * (taxaComum - taxaSilosTech) / 100
             let economiaAnual = toneladasEconomizadas * preco
@@ -293,7 +298,7 @@
             let roiMeses
 
             if (economiaMensal > 0) {
-                roiMeses = investimento / economiaMensal
+                roiMeses = investimentoInicial / economiaMensal
             } else {
                 roiMeses = 0
             }
